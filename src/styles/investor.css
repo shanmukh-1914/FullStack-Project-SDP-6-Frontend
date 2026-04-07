@@ -1,0 +1,938 @@
+/* ── Shell ──────────────────────────────────────────────────────────────── */
+.inv-shell {
+  display: flex;
+  min-height: 100vh;
+  background: #f0f0f0;
+}
+
+/* ── Sidebar ─────────────────────────────────────────────────────────────── */
+.inv-sidebar {
+  width: 210px;
+  min-width: 210px;
+  background: #1e1e1e;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.inv-sidebar-brand {
+  padding: 1.4rem 1.3rem 1.2rem;
+  border-bottom: 1px solid #333;
+}
+
+.inv-brand-name {
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+
+.inv-brand-sub {
+  display: block;
+  font-size: 0.75rem;
+  color: #999;
+  margin-top: 0.15rem;
+}
+
+.inv-nav {
+  flex: 1;
+  padding: 0.8rem 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.inv-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.65rem 1.3rem;
+  font-size: 0.875rem;
+  color: #ccc;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+  cursor: pointer;
+}
+
+.inv-nav-item:hover { background: #2d2d2d; color: #fff; }
+
+.inv-nav-item.active {
+  background: #7B1D1D;
+  color: #fff;
+  font-weight: 600;
+}
+
+.inv-nav-icon {
+  display: flex;
+  align-items: center;
+  opacity: 0.9;
+}
+
+.inv-logout {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.85rem 1.3rem;
+  font-size: 0.875rem;
+  color: #ccc;
+  background: transparent;
+  border: none;
+  border-top: 1px solid #333;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  font-family: inherit;
+  transition: background 0.15s, color 0.15s;
+}
+.inv-logout:hover { background: #2d2d2d; color: #fff; }
+
+/* ── Main Content ────────────────────────────────────────────────────────── */
+.inv-main {
+  flex: 1;
+  padding: 2rem 2.2rem;
+  overflow-y: auto;
+  min-width: 0;
+}
+
+.inv-page-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 1.4rem;
+}
+
+/* ── Card ─────────────────────────────────────────────────────────────────── */
+.inv-card {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.4rem 1.5rem;
+}
+
+.inv-card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 0.8rem;
+}
+
+.inv-edu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.9rem;
+}
+
+.inv-edu-card {
+  border: 1px solid #e7e7e7;
+  border-radius: 8px;
+  padding: 0.85rem 0.95rem;
+  background: #fff;
+}
+
+.inv-edu-category {
+  margin: 0 0 0.3rem;
+  font-size: 0.75rem;
+  color: #7B1D1D;
+  font-weight: 600;
+}
+
+.inv-edu-title {
+  margin: 0 0 0.45rem;
+  font-size: 0.92rem;
+  color: #222;
+  font-weight: 700;
+}
+
+.inv-edu-content {
+  margin: 0 0 0.45rem;
+  font-size: 0.83rem;
+  color: #666;
+  line-height: 1.45;
+}
+
+.inv-edu-takeaways {
+  margin: 0 0 0.55rem;
+  font-size: 0.8rem;
+  color: #333;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+.inv-edu-meta {
+  font-size: 0.76rem;
+  color: #888;
+}
+
+/* ── Stat Cards ──────────────────────────────────────────────────────────── */
+.inv-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+}
+
+.inv-3col { grid-template-columns: repeat(3, 1fr); }
+
+.inv-stat-card {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.1rem 1.3rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.inv-stat-label {
+  font-size: 0.8rem;
+  color: #888;
+  margin: 0 0 0.3rem;
+}
+
+.inv-stat-value {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 0.2rem;
+  letter-spacing: -0.02em;
+}
+
+.inv-stat-sub {
+  font-size: 0.78rem;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.inv-stat-icon { font-size: 1.5rem; opacity: 0.5; }
+.inv-gains-val { color: #7B1D1D; }
+
+/* ── Charts Row ──────────────────────────────────────────────────────────── */
+.inv-charts-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+}
+
+.pie-wrap { margin: 0 auto; }
+
+.pie-legend {
+  margin-top: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.pie-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: #333;
+}
+
+.pie-legend-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.pie-legend-val { margin-left: auto; font-weight: 500; }
+
+/* ── Risk ────────────────────────────────────────────────────────────────── */
+.risk-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.risk-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.4rem;
+}
+
+.risk-label { font-size: 0.82rem; color: #555; }
+.risk-val   { font-size: 0.82rem; font-weight: 600; color: #333; }
+
+.risk-bar-bg {
+  height: 8px;
+  background: #e8e8e8;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.risk-bar {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.3s;
+}
+
+/* ── Funds Table ─────────────────────────────────────────────────────────── */
+.funds-filters {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.funds-search-wrap {
+  position: relative;
+  flex: 1;
+  min-width: 200px;
+}
+
+.funds-search-icon {
+  position: absolute;
+  left: 0.7rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.8rem;
+  color: #aaa;
+}
+
+.funds-search {
+  width: 100%;
+  padding: 0.5rem 0.75rem 0.5rem 2rem;
+  font-size: 0.875rem;
+  border: 1px solid #d0d0d0;
+  border-radius: 5px;
+  outline: none;
+  font-family: inherit;
+  color: #333;
+}
+.funds-search:focus { border-color: #7B1D1D; }
+
+.inv-select {
+  padding: 0.5rem 0.7rem;
+  font-size: 0.875rem;
+  border: 1px solid #d0d0d0;
+  border-radius: 5px;
+  outline: none;
+  font-family: inherit;
+  color: #333;
+  background: #fff;
+  cursor: pointer;
+}
+.inv-select:focus { border-color: #7B1D1D; }
+.inv-select-full { width: 100%; }
+
+.funds-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.funds-table th {
+  text-align: left;
+  padding: 0.9rem 1.1rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #333;
+  border-bottom: 1.5px solid #e0e0e0;
+}
+
+.funds-table td {
+  padding: 0.85rem 1.1rem;
+  border-bottom: 1px solid #f0f0f0;
+  vertical-align: middle;
+  color: #333;
+}
+
+.funds-table tr:last-child td { border-bottom: none; }
+.funds-table tbody tr:hover { background: #fafafa; }
+
+.fund-name-main { color: #7B1D1D; font-weight: 500; }
+.fund-name-aum  { font-size: 0.78rem; color: #888; margin-top: 1px; }
+
+.ret-cell {
+  color: #7B1D1D;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.view-btn {
+  padding: 0.35rem 0.85rem;
+  font-size: 0.8rem;
+  background: transparent;
+  color: #333;
+  border: 1px solid #c8c8c8;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.15s;
+}
+.view-btn:hover { background: #f5f5f5; }
+
+/* ── Risk Badges ─────────────────────────────────────────────────────────── */
+.risk-badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+.risk-high   { background: #fde8e8; color: #b91c1c; }
+.risk-medium { background: #fdf3e1; color: #b45309; }
+.risk-low    { background: #f0f0f0; color: #555; }
+
+/* ── Compare ─────────────────────────────────────────────────────────────── */
+.compare-selectors {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+}
+
+.compare-sel-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 0.4rem;
+}
+
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.compare-table th {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  border-bottom: 1.5px solid #e0e0e0;
+}
+
+.compare-table td {
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid #f0f0f0;
+  vertical-align: middle;
+}
+
+.compare-table tr:last-child td { border-bottom: none; }
+
+.compare-param { color: #888; font-size: 0.82rem; }
+.compare-val   { color: #1a1a1a; font-weight: 500; }
+.compare-pct   { color: #7B1D1D; font-weight: 600; }
+
+/* ── Calculator ──────────────────────────────────────────────────────────── */
+.calc-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+}
+
+.form-group-calc {
+  margin-bottom: 1.2rem;
+}
+
+.calc-label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.45rem;
+}
+
+.calc-input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+  border: 1px solid #d0d0d0;
+  border-radius: 5px;
+  outline: none;
+  font-family: inherit;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+.calc-input:focus { border-color: #7B1D1D; }
+
+.calc-slider {
+  width: 100%;
+  accent-color: #9e2424;
+  height: 4px;
+  cursor: pointer;
+}
+
+.calc-toggle {
+  display: flex;
+  border: 1px solid #d0d0d0;
+  border-radius: 5px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.calc-toggle-btn {
+  flex: 1;
+  padding: 0.55rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  font-family: inherit;
+  border: none;
+  background: #fff;
+  color: #333;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.calc-toggle-btn.active {
+  background: #7B1D1D;
+  color: #fff;
+}
+
+.proj-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 5px;
+}
+
+.proj-row-bg1  { background: #f5f5f5; }
+.proj-row-bg2  { background: #fdf3f3; }
+.proj-row-dark { background: #1e1e1e; border-radius: 5px; }
+
+.proj-label       { font-size: 0.85rem; color: #555; }
+.proj-label-white { color: #ccc; font-size: 0.85rem; }
+.proj-val         { font-size: 1rem; font-weight: 700; color: #1a1a1a; }
+.proj-returns     { color: #7B1D1D; }
+.proj-val-white   { color: #fff; font-size: 1.05rem; }
+
+.calc-disclaimer {
+  font-size: 0.8rem;
+  color: #555;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.calc-disclaimer strong { color: #1a1a1a; }
+
+/* ── My Investments ──────────────────────────────────────────────────────── */
+.port-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.port-item {
+  border: 1px solid #e8e8e8;
+  border-radius: 6px;
+  padding: 1rem 1.2rem;
+  margin-bottom: 0.8rem;
+}
+
+.port-item:last-child { margin-bottom: 0; }
+
+.port-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.8rem;
+}
+
+.port-fund-name { font-weight: 700; font-size: 0.95rem; color: #1a1a1a; }
+.port-category  { font-size: 0.78rem; color: #888; margin-top: 2px; }
+
+.port-item-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+}
+
+.port-col       { display: flex; flex-direction: column; gap: 0.2rem; }
+.port-col-label { font-size: 0.75rem; color: #888; }
+.port-col-val   { font-size: 0.875rem; font-weight: 500; color: #333; }
+.gains-text     { color: #7B1D1D; font-weight: 600; }
+
+/* ── Profile ─────────────────────────────────────────────────────────────── */
+.profile-layout {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 1.2rem;
+}
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.9rem;
+}
+
+.pref-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.form-group-p { display: flex; flex-direction: column; gap: 0.35rem; }
+
+.p-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #555;
+}
+
+.p-input, .p-textarea {
+  padding: 0.5rem 0.7rem;
+  font-size: 0.875rem;
+  border: 1px solid #d0d0d0;
+  border-radius: 5px;
+  outline: none;
+  font-family: inherit;
+  color: #333;
+  background: #fff;
+}
+.p-input:focus, .p-textarea:focus { border-color: #7B1D1D; }
+.p-textarea { resize: vertical; }
+
+.profile-avatar-card {
+  text-align: center;
+  padding: 1.5rem 1rem;
+}
+
+.profile-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: #ede8e8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 0.8rem;
+}
+
+.profile-avatar-name { font-weight: 700; font-size: 1rem; color: #1a1a1a; }
+.profile-avatar-role { font-size: 0.8rem; color: #888; margin-top: 2px; }
+
+.acct-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.45rem 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 0.85rem;
+}
+.acct-row:last-child { border-bottom: none; }
+.acct-label    { color: #888; }
+.acct-info     { color: #333; font-weight: 500; }
+.acct-verified { color: #7B1D1D; font-weight: 600; }
+
+/* ── Floating Help ───────────────────────────────────────────────────────── */
+.help-btn {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1.5px solid #ccc;
+  color: #888;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  z-index: 200;
+  font-family: inherit;
+}
+.help-btn:hover { box-shadow: 0 4px 14px rgba(0,0,0,0.18); }
+
+/* ── Fund Detail ─────────────────────────────────────────────────────────── */
+.fd-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.875rem;
+  color: #555;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 1rem;
+  font-family: inherit;
+  transition: color 0.15s;
+}
+.fd-back:hover { color: #1a1a1a; }
+
+.fd-hero {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 1.4rem;
+  gap: 1rem;
+}
+
+.fd-title {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 0.5rem;
+}
+
+.fd-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.fd-category { font-size: 0.875rem; color: #555; }
+.fd-dot      { color: #bbb; }
+
+.fd-info-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  margin-top: 1.2rem;
+}
+
+.fd-section-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.fd-section-icon { font-size: 1rem; }
+
+.fd-obj-label {
+  font-size: 0.78rem;
+  color: #888;
+  margin: 0 0 0.2rem;
+}
+
+.fd-obj-text {
+  font-size: 0.875rem;
+  color: #333;
+  line-height: 1.6;
+  margin: 0 0 1rem;
+}
+
+.fd-obj-val {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 0.8rem;
+}
+
+.fd-overview-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem 1rem;
+  margin-top: 0.5rem;
+}
+
+.fd-risk-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.fd-risk-list li {
+  font-size: 0.875rem;
+  color: #333;
+  padding-left: 1rem;
+  position: relative;
+  line-height: 1.5;
+}
+
+.fd-risk-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.45em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #7B1D1D;
+}
+
+/* ── Invest Modal ────────────────────────────────────────────────────────── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-box {
+  background: #fff;
+  border-radius: 10px;
+  padding: 1.8rem;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  animation: modalIn 0.18s ease;
+}
+
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.95) translateY(-10px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.2rem;
+}
+
+.modal-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.modal-close {
+  background: transparent;
+  border: none;
+  font-size: 1rem;
+  color: #888;
+  cursor: pointer;
+  padding: 0.2rem;
+  line-height: 1;
+  font-family: inherit;
+}
+.modal-close:hover { color: #333; }
+
+.modal-body { display: flex; flex-direction: column; }
+
+.modal-info-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.875rem;
+  padding: 0.45rem 0;
+  border-bottom: 1px solid #f0f0f0;
+  color: #555;
+}
+
+.modal-units-preview {
+  margin-top: 0.7rem;
+  font-size: 0.85rem;
+  color: #555;
+  background: #f7f3f3;
+  border-radius: 5px;
+  padding: 0.55rem 0.8rem;
+}
+
+.modal-success {
+  text-align: center;
+  padding: 0.5rem 0;
+}
+
+.modal-success-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #f2f9f2;
+  color: #22a745;
+  font-size: 1.4rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  border: 2px solid #22a745;
+}
+
+.modal-success h3 {
+  font-size: 1.1rem;
+  color: #1a1a1a;
+  margin: 0 0 0.5rem;
+}
+
+.modal-success p {
+  font-size: 0.875rem;
+  color: #555;
+  margin: 0;
+}
+
+.modal-units-info {
+  font-size: 0.82rem !important;
+  color: #888 !important;
+  margin-top: 0.25rem !important;
+}
+
+/* ── Shared Primary Button (usable without auth.css) ─────────────────────── */
+.auth-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem 1.5rem;
+  background: #7B1D1D;
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-family: inherit;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.18s;
+}
+.auth-btn:hover:not(:disabled) { background: #6a1919; }
+.auth-btn:disabled { opacity: 0.55; cursor: not-allowed; }
+
+/* ── Live API Indicators ─────────────────────────────────────────────────── */
+.live-dot {
+  color: #22a745;
+  font-size: 0.55rem;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+
+.nav-loading {
+  color: #aaa;
+  font-size: 0.8rem;
+}
+
+.api-live-badge {
+  font-size: 0.72rem;
+  color: #22a745;
+  font-weight: 600;
+  background: #f0faf3;
+  border: 1px solid #b6e8c4;
+  border-radius: 4px;
+  padding: 0.15rem 0.5rem;
+}
+
+.api-loading-badge {
+  font-size: 0.72rem;
+  color: #888;
+  background: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 0.15rem 0.5rem;
+}
+
+.api-error-badge {
+  font-size: 0.72rem;
+  color: #b45309;
+  background: #fdf3e1;
+  border: 1px solid #f0c060;
+  border-radius: 4px;
+  padding: 0.15rem 0.5rem;
+}
