@@ -7,7 +7,8 @@ import { ArrowLeft, CircleCheckBig, Wallet, Shield, AlertTriangle, History, Tren
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
 } from 'recharts'
-
+// Displays detailed information about a selected mutual fund
+// Includes performance, returns, and other key metrics
 const riskClass = { High: 'risk-high', Medium: 'risk-medium', Low: 'risk-low' }
 
 function InvestModal({ fund, liveNav, onClose }) {

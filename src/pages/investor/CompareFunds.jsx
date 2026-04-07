@@ -2,7 +2,8 @@
 import InvestorLayout from '../../layouts/InvestorLayout'
 import { getFunds } from '../../services/backendService'
 import { GitCompareArrows, CircleEllipsis } from 'lucide-react'
-
+// Allows users to compare multiple mutual funds
+// Displays comparison based on returns, risk, and performance
 const riskClass = { High: 'risk-high', Medium: 'risk-medium', Low: 'risk-low' }
 
 const PARAMS = [

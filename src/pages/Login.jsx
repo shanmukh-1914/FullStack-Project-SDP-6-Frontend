@@ -4,7 +4,8 @@ import '../styles/auth.css'
 import { useInvestments } from '../context/InvestmentContext'
 import { loginUser } from '../services/backendService'
 import { Mail, Lock, UserCog, LogIn, ArrowLeft, CircleHelp } from 'lucide-react'
-
+// Handles user authentication
+// Accepts user credentials and sends login request to backend
 const TrendingUpIcon = () => (
   <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
     stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
