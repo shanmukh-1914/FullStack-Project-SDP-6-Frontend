@@ -2,7 +2,8 @@
 import AdminLayout from '../../layouts/AdminLayout'
 import { createFund, getFunds, updateFund, updateFundNav } from '../../services/backendService'
 import { BadgeIndianRupee, PlusCircle, X, CircleX, Save, Edit3, RefreshCcw } from 'lucide-react'
-
+// Allows admin to manage mutual fund data
+// Supports adding, updating, and deleting fund details
 const CATEGORIES = ['All Categories', 'Large Cap', 'Mid Cap', 'Small Cap', 'Debt', 'Balanced', 'ELSS']
 const RISK_LEVELS = ['All Risk Levels', 'Low', 'Medium', 'High']
 const RISK_CLASS  = { High: 'risk-high', Medium: 'risk-medium', Low: 'risk-low' }

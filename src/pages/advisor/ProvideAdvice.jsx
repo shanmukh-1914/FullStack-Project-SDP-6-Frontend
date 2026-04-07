@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import AdvisorLayout from '../../layouts/AdvisorLayout'
 import { MessageSquarePlus, Eye, User, Mail, NotebookPen, Save, Send, X } from 'lucide-react'
-
+// Allows advisor to provide financial advice to users
+// Sends recommendations based on user queries or investments
 function loadNotes() {
   try { return JSON.parse(localStorage.getItem('mfp_advice_notes') || '[]') } catch { return [] }
 }

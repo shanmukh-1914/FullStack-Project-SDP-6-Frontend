@@ -2,7 +2,8 @@
 import AdminLayout from '../../layouts/AdminLayout'
 import { getAllUsers } from '../../services/backendService'
 import { ShieldCheck } from 'lucide-react'
-
+// Displays admin dashboard with system overview
+// Shows statistics like users, funds, reports, and activities
 const TYPE_COLOR = {
   user:    { bg: '#fef2f2', color: '#c0392b', border: '#fcc' },
   fund:    { bg: '#fdf8e1', color: '#b45309', border: '#f0d070' },
