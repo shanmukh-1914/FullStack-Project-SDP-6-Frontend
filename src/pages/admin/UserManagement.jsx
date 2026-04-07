@@ -3,7 +3,8 @@ import AdminLayout from '../../layouts/AdminLayout'
 import { useEffect } from 'react'
 import { getAllUsers, toggleUserStatus as toggleUserStatusApi } from '../../services/backendService'
 import { Users, UserPlus, X, Ban, ShieldCheck, Eye, CircleX } from 'lucide-react'
-
+// Handles management of application users
+// Allows admin to view, add, update, or delete user records
 const ROLES    = ['All Roles', 'Investor', 'Financial Advisor', 'Data Analyst', 'Admin']
 const STATUSES = ['All Status', 'Active', 'Inactive']
 

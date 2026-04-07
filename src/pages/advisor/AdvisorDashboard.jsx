@@ -4,7 +4,8 @@ import AdvisorLayout from '../../layouts/AdvisorLayout'
 import { useInvestments } from '../../context/InvestmentContext'
 import { getAdvisorQueries, getAllUsers, getAdvisorContent } from '../../services/backendService'
 import { LayoutDashboard, MessageSquareReply, Save } from 'lucide-react'
-
+// Displays advisor dashboard with client-related insights
+// Shows investor queries, content, and recommendations
 const ClientsIcon = () => (
   <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#7B1D1D" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
     <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
