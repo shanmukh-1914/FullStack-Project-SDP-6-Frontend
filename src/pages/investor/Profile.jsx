@@ -3,7 +3,8 @@ import InvestorLayout from '../../layouts/InvestorLayout'
 import { useInvestments } from '../../context/InvestmentContext'
 import { getMyQueries, getUserProfile, submitInvestorQuery, updateUserProfile } from '../../services/backendService'
 import { UserCircle2, User, Mail, Phone, BadgeCheck, MapPin, Save, ShieldCheck, SlidersHorizontal, MessageSquareMore, Send, RefreshCcw, Clock3 } from 'lucide-react'
-
+// Handles user profile information
+// Allows viewing and updating personal details
 const UserIcon = () => (
   <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#7B1D1D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>

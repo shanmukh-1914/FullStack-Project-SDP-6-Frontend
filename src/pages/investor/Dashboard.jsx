@@ -5,7 +5,8 @@ import {
   PieChart, Pie, Cell, Tooltip as PieTooltip,
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
 } from 'recharts'
-
+// Displays user dashboard with summary of investments and key metrics
+// Fetches data from backend APIs and renders charts or statistics
 const PIE_COLORS = ['#7B1D1D', '#C9A84C', '#333333', '#e06b6b', '#6b8ce0', '#6be0b5']
 
 const RADIAN = Math.PI / 180
