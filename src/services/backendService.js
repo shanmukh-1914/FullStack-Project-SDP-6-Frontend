@@ -101,8 +101,10 @@ function mapQuery(item) {
   }
 }
 
+/* ================= AUTH ================= */
+
 export async function registerUser({ fullName, email, password, role }) {
-  return apiRequest('/api/auth/register', {
+  return apiRequest('/auth/register', {
     method: 'POST',
     body: JSON.stringify({ fullName, email, password, role: toBackendRole(role) }),
   })
@@ -126,6 +128,8 @@ export function logoutUser() {
   clearSession()
 }
 
+/* ================= INVESTOR ================= */
+
 export async function getFunds() {
   const data = await apiRequest('/investor/funds')
   return (data || []).map(mapFund)
@@ -133,56 +137,6 @@ export async function getFunds() {
 
 export async function getFundById(id) {
   const data = await apiRequest(`/investor/funds/${id}`)
-  return mapFund(data)
-}
-
-export async function createFund(payload) {
-  const data = await apiRequest('/admin/funds', {
-    method: 'POST',
-    body: JSON.stringify({
-      name: payload.name,
-      category: payload.category,
-      risk: payload.risk,
-      nav: Number(payload.nav || 0),
-      aum: payload.aum,
-      expenseRatio: payload.expenseRatio,
-      minInvest: payload.minInvest,
-      returns1yr: Number(payload.ret1 || 0),
-      returns3yr: Number(payload.ret3 || 0),
-      returns5yr: Number(payload.ret5 || 0),
-      description: payload.description || '',
-      fundManager: payload.fundManager || 'N/A',
-    }),
-  })
-  return mapFund(data)
-}
-
-export async function updateFund(id, payload) {
-  const data = await apiRequest(`/admin/funds/${id}`, {
-    method: 'PUT',
-    body: JSON.stringify({
-      name: payload.name,
-      category: payload.category,
-      risk: payload.risk,
-      nav: Number(payload.nav || 0),
-      aum: payload.aum,
-      expenseRatio: payload.expenseRatio,
-      minInvest: payload.minInvest,
-      returns1yr: Number(payload.ret1 || 0),
-      returns3yr: Number(payload.ret3 || 0),
-      returns5yr: Number(payload.ret5 || 0),
-      description: payload.description || '',
-      fundManager: payload.fundManager || 'N/A',
-    }),
-  })
-  return mapFund(data)
-}
-
-export async function updateFundNav(id, nav) {
-  const data = await apiRequest(`/admin/funds/${id}/nav`, {
-    method: 'PUT',
-    body: JSON.stringify({ nav: Number(nav) }),
-  })
   return mapFund(data)
 }
 
@@ -202,36 +156,6 @@ export async function getPortfolio(userId) {
 export async function getPublishedContent() {
   const data = await apiRequest('/investor/content')
   return (data || []).map(mapContentItem)
-}
-
-export async function getAdvisorContent() {
-  const data = await apiRequest('/advisor/content')
-  return (data || []).map(mapContentItem)
-}
-
-export async function getAdminContent() {
-  const data = await apiRequest('/admin/content')
-  return (data || []).map(mapContentItem)
-}
-
-export async function createAdvisorContent(authorId, payload) {
-  const data = await apiRequest(`/advisor/content/${authorId}`, {
-    method: 'POST',
-    body: JSON.stringify({ ...payload, status: (payload.status || 'Draft').toUpperCase() }),
-  })
-  return mapContentItem(data)
-}
-
-export async function updateAdvisorContent(id, payload) {
-  const data = await apiRequest(`/advisor/content/${id}`, {
-    method: 'PUT',
-    body: JSON.stringify({ ...payload, status: (payload.status || 'Draft').toUpperCase() }),
-  })
-  return mapContentItem(data)
-}
-
-export async function deleteAdvisorContent(id) {
-  await apiRequest(`/advisor/content/${id}`, { method: 'DELETE' })
 }
 
 export async function getUserProfile(id) {
@@ -270,6 +194,68 @@ export async function getMyQueries(investorId) {
   return (data || []).map(mapQuery)
 }
 
+/* ================= ADMIN ================= */
+
+export async function createFund(payload) {
+  const data = await apiRequest('/admin/funds', {
+    method: 'POST',
+    body: JSON.stringify(payload),
+  })
+  return mapFund(data)
+}
+
+export async function updateFund(id, payload) {
+  const data = await apiRequest(`/admin/funds/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify(payload),
+  })
+  return mapFund(data)
+}
+
+export async function updateFundNav(id, nav) {
+  const data = await apiRequest(`/admin/funds/${id}/nav`, {
+    method: 'PUT',
+    body: JSON.stringify({ nav: Number(nav) }),
+  })
+  return mapFund(data)
+}
+
+export async function getAllUsers() {
+  const data = await apiRequest('/admin/users')
+  return (data || []).map(mapUser)
+}
+
+export async function toggleUserStatus(id) {
+  await apiRequest(`/admin/users/${id}/toggle-status`, { method: 'PUT' })
+}
+
+/* ================= ADVISOR ================= */
+
+export async function getAdvisorContent() {
+  const data = await apiRequest('/advisor/content')
+  return (data || []).map(mapContentItem)
+}
+
+export async function createAdvisorContent(authorId, payload) {
+  const data = await apiRequest(`/advisor/content/${authorId}`, {
+    method: 'POST',
+    body: JSON.stringify(payload),
+  })
+  return mapContentItem(data)
+}
+
+export async function updateAdvisorContent(id, payload) {
+  const data = await apiRequest(`/advisor/content/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify(payload),
+  })
+  return mapContentItem(data)
+}
+
+export async function deleteAdvisorContent(id) {
+  await apiRequest(`/advisor/content/${id}`, { method: 'DELETE' })
+}
+
 export async function getAdvisorQueries() {
   const data = await apiRequest('/advisor/queries')
   return (data || []).map(mapQuery)
@@ -283,13 +269,23 @@ export async function replyToInvestorQuery(queryId, advisorId, replyText) {
   return mapQuery(data)
 }
 
-export async function getAllUsers() {
-  const data = await apiRequest('/admin/users')
-  return (data || []).map(mapUser)
+/* ================= ANALYST ================= */
+
+export async function getAnalystReports() {
+  const data = await apiRequest('/analyst/reports')
+  return (data || []).map(mapReport)
 }
 
-export async function toggleUserStatus(id) {
-  await apiRequest(`/admin/users/${id}/toggle-status`, { method: 'PUT' })
+export async function createAnalystReport(analystId, payload) {
+  const data = await apiRequest(`/analyst/reports/${analystId}`, {
+    method: 'POST',
+    body: JSON.stringify(payload),
+  })
+  return mapReport(data)
+}
+
+export async function getAnalystAnalytics() {
+  return apiRequest('/analyst/analytics')
 }
 
 function mapReport(item) {
@@ -305,26 +301,4 @@ function mapReport(item) {
     generatedById: item.generatedById,
     generatedByName: item.generatedByName,
   }
-}
-
-export async function getAnalystReports() {
-  const data = await apiRequest('/analyst/reports')
-  return (data || []).map(mapReport)
-}
-
-export async function createAnalystReport(analystId, payload) {
-  const data = await apiRequest(`/analyst/reports/${analystId}`, {
-    method: 'POST',
-    body: JSON.stringify({
-      title: payload.title,
-      reportType: payload.reportType,
-      description: payload.description || '',
-      filePath: payload.filePath || '',
-    }),
-  })
-  return mapReport(data)
-}
-
-export async function getAnalystAnalytics() {
-  return apiRequest('/analyst/analytics')
 }
