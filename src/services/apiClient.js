@@ -1,4 +1,4 @@
-const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || 'https://fullstack-project-sdp-6-backend-production.up.railway.app/').replace(/\/$/, '')
+const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || 'https://fullstack-project-sdp-6-backend-production.up.railway.app/api').replace(/\/$/, '')
 const TOKEN_KEY = 'mfp_auth_token'
 const CURRENT_USER_KEY = 'mfp_current_user'
 
