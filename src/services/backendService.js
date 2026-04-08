@@ -102,7 +102,7 @@ function mapQuery(item) {
 }
 
 export async function registerUser({ fullName, email, password, role }) {
-  return apiRequest('/auth/register', {
+  return apiRequest('/api/auth/register', {
     method: 'POST',
     body: JSON.stringify({ fullName, email, password, role: toBackendRole(role) }),
   })
