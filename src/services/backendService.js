@@ -196,6 +196,11 @@ export async function getMyQueries(investorId) {
 
 /* ================= ADMIN ================= */
 
+export async function getAdminContent() {
+  const data = await apiRequest('/admin/content')
+  return (data || []).map(mapContentItem)
+}
+
 export async function createFund(payload) {
   const data = await apiRequest('/admin/funds', {
     method: 'POST',
@@ -228,7 +233,6 @@ export async function getAllUsers() {
 export async function toggleUserStatus(id) {
   await apiRequest(`/admin/users/${id}/toggle-status`, { method: 'PUT' })
 }
-
 /* ================= ADVISOR ================= */
 
 export async function getAdvisorContent() {
