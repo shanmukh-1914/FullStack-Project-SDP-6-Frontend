@@ -30,48 +30,38 @@ export default function Register() {
     setForm({ ...form, [e.target.name]: e.target.value })
   }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
+const handleSubmit = async (e) => {
+  e.preventDefault()
 
-    // Password validation
-    if (form.password !== form.confirmPassword) {
-      setError('Passwords do not match.')
-      return
-    }
-
-    try {
-      setLoading(true)
-      setError('')
-
-      // ⏱️ Timeout protection
-      const timeout = new Promise((_, reject) =>
-        setTimeout(() => reject(new Error('Server is slow, please try again')), 8000)
-      )
-
-      await Promise.race([
-        registerUser({
-          fullName: form.fullName,
-          email: form.email,
-          password: form.password,
-          role: form.role,
-        }),
-        timeout,
-      ])
-
-      // ✅ Success message
-      setError('Registration successful! Redirecting...')
-
-      // 🔄 Redirect after 1 second
-      setTimeout(() => {
-        navigate('/login')
-      }, 1000)
-
-    } catch (err) {
-      setError(err.message || 'Registration failed. Please try again.')
-    } finally {
-      setLoading(false)
-    }
+  if (form.password !== form.confirmPassword) {
+    setError('Passwords do not match.')
+    return
   }
+
+  try {
+    setLoading(true)
+    setError('')
+
+    await registerUser({
+      fullName: form.fullName,
+      email: form.email,
+      password: form.password,
+      role: form.role,
+    })
+
+    // ✅ Success
+    setError('Registration successful! Redirecting...')
+
+    setTimeout(() => {
+      navigate('/login')
+    }, 1000)
+
+  } catch (err) {
+    setError(err.message || 'Registration failed. Please try again.')
+  } finally {
+    setLoading(false)
+  }
+}
 
   return (
     <div className="auth-page">
