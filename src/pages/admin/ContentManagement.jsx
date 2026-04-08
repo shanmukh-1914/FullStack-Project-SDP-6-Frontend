@@ -1,4 +1,4 @@
-﻿import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import AdminLayout from '../../layouts/AdminLayout'
 import { useInvestments } from '../../context/InvestmentContext'
 import { createAdvisorContent, deleteAdvisorContent, getAdminContent, updateAdvisorContent } from '../../services/backendService'
