@@ -1,4 +1,4 @@
-﻿import { useState } from 'react'
+import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import '../styles/auth.css'
 import { registerUser } from '../services/backendService'
@@ -14,6 +14,7 @@ const TrendingUpIcon = () => (
 
 export default function Register() {
   const navigate = useNavigate()
+
   const [form, setForm] = useState({
     fullName: '',
     email: '',
@@ -21,13 +22,18 @@ export default function Register() {
     confirmPassword: '',
     role: 'Investor',
   })
+
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
-  const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value })
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value })
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+
+    // Password validation
     if (form.password !== form.confirmPassword) {
       setError('Passwords do not match.')
       return
@@ -36,13 +42,30 @@ export default function Register() {
     try {
       setLoading(true)
       setError('')
-      await registerUser({
-        fullName: form.fullName,
-        email: form.email,
-        password: form.password,
-        role: form.role,
-      })
-      navigate('/login')
+
+      // ⏱️ Timeout protection
+      const timeout = new Promise((_, reject) =>
+        setTimeout(() => reject(new Error('Server is slow, please try again')), 8000)
+      )
+
+      await Promise.race([
+        registerUser({
+          fullName: form.fullName,
+          email: form.email,
+          password: form.password,
+          role: form.role,
+        }),
+        timeout,
+      ])
+
+      // ✅ Success message
+      setError('Registration successful! Redirecting...')
+
+      // 🔄 Redirect after 1 second
+      setTimeout(() => {
+        navigate('/login')
+      }, 1000)
+
     } catch (err) {
       setError(err.message || 'Registration failed. Please try again.')
     } finally {
@@ -57,18 +80,35 @@ export default function Register() {
         <span className="auth-logo-icon"><TrendingUpIcon /></span>
         <span className="auth-logo-text">MutualFund Pro</span>
       </div>
+
       <p className="auth-tagline">Create your account</p>
 
       {/* Card */}
       <div className="auth-card">
         <form onSubmit={handleSubmit} className="auth-form">
+
+          {/* Message Box */}
           {error && (
-            <div style={{ background: '#fee2e2', color: '#7B1D1D', border: '1px solid #f87171', borderRadius: '6px', padding: '0.6rem 1rem', marginBottom: '0.8rem', fontSize: '0.9rem' }}>
+            <div style={{
+              background: error.includes('successful') ? '#dcfce7' : '#fee2e2',
+              color: error.includes('successful') ? '#166534' : '#7B1D1D',
+              border: error.includes('successful') ? '1px solid #4ade80' : '1px solid #f87171',
+              borderRadius: '6px',
+              padding: '0.6rem 1rem',
+              marginBottom: '0.8rem',
+              fontSize: '0.9rem'
+            }}>
               {error}
             </div>
           )}
+
+          {/* Full Name */}
           <div className="form-group">
-            <label className="form-label"><span className="ui-meta-row"><User className="ui-meta-icon" />Full Name</span></label>
+            <label className="form-label">
+              <span className="ui-meta-row">
+                <User className="ui-meta-icon" /> Full Name
+              </span>
+            </label>
             <input
               type="text"
               name="fullName"
@@ -80,8 +120,13 @@ export default function Register() {
             />
           </div>
 
+          {/* Email */}
           <div className="form-group">
-            <label className="form-label"><span className="ui-meta-row"><Mail className="ui-meta-icon" />Email Address</span></label>
+            <label className="form-label">
+              <span className="ui-meta-row">
+                <Mail className="ui-meta-icon" /> Email Address
+              </span>
+            </label>
             <input
               type="email"
               name="email"
@@ -93,8 +138,13 @@ export default function Register() {
             />
           </div>
 
+          {/* Password */}
           <div className="form-group">
-            <label className="form-label"><span className="ui-meta-row"><Lock className="ui-meta-icon" />Password</span></label>
+            <label className="form-label">
+              <span className="ui-meta-row">
+                <Lock className="ui-meta-icon" /> Password
+              </span>
+            </label>
             <input
               type="password"
               name="password"
@@ -106,8 +156,13 @@ export default function Register() {
             />
           </div>
 
+          {/* Confirm Password */}
           <div className="form-group">
-            <label className="form-label"><span className="ui-meta-row"><ShieldCheck className="ui-meta-icon" />Confirm Password</span></label>
+            <label className="form-label">
+              <span className="ui-meta-row">
+                <ShieldCheck className="ui-meta-icon" /> Confirm Password
+              </span>
+            </label>
             <input
               type="password"
               name="confirmPassword"
@@ -119,8 +174,13 @@ export default function Register() {
             />
           </div>
 
+          {/* Role */}
           <div className="form-group">
-            <label className="form-label"><span className="ui-meta-row"><UserCog className="ui-meta-icon" />Register As</span></label>
+            <label className="form-label">
+              <span className="ui-meta-row">
+                <UserCog className="ui-meta-icon" /> Register As
+              </span>
+            </label>
             <select
               name="role"
               className="form-select"
@@ -134,20 +194,34 @@ export default function Register() {
             </select>
           </div>
 
+          {/* Button */}
           <button type="submit" className="auth-btn" disabled={loading}>
-            <span className="ui-btn-content"><UserPlus className="ui-btn-icon" />{loading ? 'Registering...' : 'Register'}</span>
+            <span className="ui-btn-content">
+              <UserPlus className="ui-btn-icon" />
+              {loading ? 'Registering...' : 'Register'}
+            </span>
           </button>
 
+          {/* Switch */}
           <p className="auth-switch">
             Already have an account?{' '}
             <Link to="/login" className="auth-link">Login here</Link>
           </p>
+
         </form>
       </div>
 
-      <Link to="/" className="back-home"><span className="ui-btn-content"><ArrowLeft className="ui-btn-icon" />Back to Home</span></Link>
+      {/* Back */}
+      <Link to="/" className="back-home">
+        <span className="ui-btn-content">
+          <ArrowLeft className="ui-btn-icon" /> Back to Home
+        </span>
+      </Link>
 
-      <button className="help-btn" title="Help"><CircleHelp className="ui-btn-icon" /></button>
+      {/* Help */}
+      <button className="help-btn" title="Help">
+        <CircleHelp className="ui-btn-icon" />
+      </button>
     </div>
   )
 }
